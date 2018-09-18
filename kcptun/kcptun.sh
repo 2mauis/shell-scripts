@@ -762,7 +762,7 @@ install_supervisor() {
 		exit 1
 	fi
 
-	if ! command_exists easy_install; then
+	if ! command_exists pip; then
 		cat >&2 <<-EOF
 		未找到已安装的 easy_install 命令，
 		请先手动安装 python-setuptools
@@ -771,7 +771,7 @@ install_supervisor() {
 		exit 1
 	fi
 
-	if ! ( easy_install --help >/dev/null 2>&1 ); then
+	if ! ( pip --help >/dev/null 2>&1 ); then
 		cat >&2 <<-EOF
 		检测到你的 easy_install 已损坏，
 		通常是由于你自己升级过 python 版本，
@@ -786,14 +786,14 @@ install_supervisor() {
 
 	(
 		set -x
-		easy_install -i https://pypi.python.org/simple/ -U supervisor
+		pip -i https://pypi.python.org/simple/ -U supervisor
 	)
 
 	if [ "$?" != "0" ]; then
 		cat >&2 <<-EOF
 		错误: 安装 Supervisor 失败，
 		请尝试使用
-		  easy_install -i https://pypi.python.org/simple/ -U supervisor
+		  pip -i https://pypi.python.org/simple/ -U supervisor
 		来手动安装。
 		EOF
 
