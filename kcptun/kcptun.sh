@@ -786,7 +786,8 @@ install_supervisor() {
 
 	(
 		set -x
-		pip -i https://pypi.python.org/simple/ -U supervisor
+		#pip -i https://pypi.python.org/simple/ -U supervisor
+		pip install -U supervisor
 	)
 
 	if [ "$?" != "0" ]; then
